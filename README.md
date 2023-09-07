@@ -32,14 +32,12 @@ npx cap sync
 ### setUserId(...)
 
 ```typescript
-setUserId(options: { userId: string; }) => any
+setUserId(options: { userId: string; }) => Promise<void>
 ```
 
 | Param         | Type                             |
 | ------------- | -------------------------------- |
 | **`options`** | <code>{ userId: string; }</code> |
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -47,14 +45,12 @@ setUserId(options: { userId: string; }) => any
 ### setUserProfile(...)
 
 ```typescript
-setUserProfile(options: { name: string; value: string; }) => any
+setUserProfile(options: { name: string; value: string; }) => Promise<void>
 ```
 
 | Param         | Type                                          |
 | ------------- | --------------------------------------------- |
 | **`options`** | <code>{ name: string; value: string; }</code> |
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -62,10 +58,10 @@ setUserProfile(options: { name: string; value: string; }) => any
 ### getAppInstanceId()
 
 ```typescript
-getAppInstanceId() => any
+getAppInstanceId() => Promise<{ instanceId: string; }>
 ```
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;{ instanceId: string; }&gt;</code>
 
 --------------------
 
@@ -73,10 +69,8 @@ getAppInstanceId() => any
 ### reset()
 
 ```typescript
-reset() => any
+reset() => Promise<void>
 ```
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -84,14 +78,12 @@ reset() => any
 ### onEvent(...)
 
 ```typescript
-onEvent(options: { name: string; params: any; }) => any
+onEvent(options: { name: string; params: any; }) => Promise<void>
 ```
 
 | Param         | Type                                        |
 | ------------- | ------------------------------------------- |
 | **`options`** | <code>{ name: string; params: any; }</code> |
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -99,14 +91,12 @@ onEvent(options: { name: string; params: any; }) => any
 ### setSessionDuration(...)
 
 ```typescript
-setSessionDuration(options: { duration: number; }) => any
+setSessionDuration(options: { duration: number; }) => Promise<void>
 ```
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ duration: number; }</code> |
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -114,10 +104,8 @@ setSessionDuration(options: { duration: number; }) => any
 ### enable()
 
 ```typescript
-enable() => any
+enable() => Promise<void>
 ```
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -125,10 +113,8 @@ enable() => any
 ### disable()
 
 ```typescript
-disable() => any
+disable() => Promise<void>
 ```
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -136,10 +122,8 @@ disable() => any
 ### enableLog()
 
 ```typescript
-enableLog() => any
+enableLog() => Promise<void>
 ```
-
-**Returns:** <code>any</code>
 
 --------------------
 
@@ -147,14 +131,12 @@ enableLog() => any
 ### enableLogWithLevel(...)
 
 ```typescript
-enableLogWithLevel(options: { logLevel: string; }) => any
+enableLogWithLevel(options: { logLevel: string; }) => Promise<void>
 ```
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ logLevel: string; }</code> |
-
-**Returns:** <code>any</code>
 
 --------------------
 
