@@ -1,12 +1,18 @@
 # hms-analytics
 
 A native plugin for HMS Analytics.
+(The plugin is a fake, it does not contain the HMS libraries, it is intended to be used on non-Huawei Android devices)
 
 ## Install
 
 ```bash
 npm install hms-analytics
 npx cap sync
+```
+
+## Publish
+```bash
+npm publish --tag fake
 ```
 
 ## API

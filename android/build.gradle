@@ -4,8 +4,6 @@ ext {
     androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.6.1'
     androidxJunitVersion = project.hasProperty('androidxJunitVersion') ? rootProject.ext.androidxJunitVersion : '1.1.5'
     androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.5.1'
-    hmsAnalyticsVersion = project.hasProperty('hmsAnalyticsVersion') ? rootProject.ext.hmsAnalyticsVersion : '6.12.0.301'
-    hmsDTMVersion = project.hasProperty('hmsDTMVersion') ? rootProject.ext.hmsDTMVersion : '6.6.0.308'
 }
 
 buildscript {
@@ -15,16 +13,9 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
-        maven {
-            url 'https://developer.huawei.com/repo/'
-        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1'
-        classpath 'com.huawei.agconnect:agcp:1.6.1.300'
-        if (System.getenv("CAP_PLUGIN_PUBLISH") == "true") {
-            classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
-        }
+        classpath 'com.android.tools.build:gradle:8.0.0'
     }
 }
 
@@ -63,9 +54,7 @@ android {
 repositories {
     google()
     mavenCentral()
-    maven {
-        url 'https://developer.huawei.com/repo/'
-    }
+    jcenter()
 }
 
 
@@ -82,6 +71,4 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
-    implementation "com.huawei.hms:hianalytics:$hmsAnalyticsVersion"
-    implementation "com.huawei.hms:dtm-api:$hmsDTMVersion"
 }

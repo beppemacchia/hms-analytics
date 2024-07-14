@@ -1,6 +1,6 @@
 {
   "name": "hms-analytics",
-  "version": "6.0.0",
+  "version": "6.0.0-fake.0",
   "description": "A native plugin for HMS Analytics.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -16,10 +16,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beppemac/hms-analytics.git"
+    "url": "git+https://github.com/beppemacchia/hms-analytics.git"
   },
   "bugs": {
-    "url": "https://github.com/beppemac/hms-analytics/issues"
+    "url": "https://github.com/beppemacchia/hms-analytics/issues"
   },
   "keywords": [
     "capacitor",
