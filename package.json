@@ -16,10 +16,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beppemac/hms-analytics.git"
+    "url": "git+https://github.com/beppemacchia/hms-analytics.git"
   },
   "bugs": {
-    "url": "https://github.com/beppemac/hms-analytics/issues"
+    "url": "https://github.com/beppemacchia/hms-analytics/issues"
   },
   "keywords": [
     "capacitor",
