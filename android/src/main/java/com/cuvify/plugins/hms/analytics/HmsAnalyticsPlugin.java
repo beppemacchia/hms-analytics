@@ -57,19 +57,19 @@ public class HmsAnalyticsPlugin extends Plugin {
     public void setUserId(PluginCall call) {
         try {
             if (analyticsInstance == null) {
-                call.error(MISSING_REF_MSSG);
+                call.reject(MISSING_REF_MSSG);
                 return;
             }
 
             if (!call.hasOption("userId")) {
-                call.error("userId property is missing");
+                call.reject("userId property is missing");
                 return;
             }
 
             String userId = call.getString("userId");
             analyticsInstance.setUserId(userId);
         } catch (Exception ex) {
-            call.error(ex.getLocalizedMessage());
+            call.reject(ex.getLocalizedMessage());
         }
     }
 
@@ -82,17 +82,17 @@ public class HmsAnalyticsPlugin extends Plugin {
     public void setUserProfile(PluginCall call) {
         try {
             if (analyticsInstance == null) {
-                call.error(MISSING_REF_MSSG);
+                call.reject(MISSING_REF_MSSG);
                 return;
             }
 
             if (!call.hasOption("name")) {
-                call.error("name property is missing");
+                call.reject("name property is missing");
                 return;
             }
 
             if (!call.hasOption("value")) {
-                call.error("value property is missing");
+                call.reject("value property is missing");
                 return;
             }
 
@@ -100,9 +100,9 @@ public class HmsAnalyticsPlugin extends Plugin {
             String value = call.getString("value");
 
             analyticsInstance.setUserProfile(name, value);
-            call.success();
+            call.resolve();
         } catch (Exception ex) {
-            call.error(ex.getLocalizedMessage());
+            call.reject(ex.getLocalizedMessage());
         }
     }
 
@@ -114,7 +114,7 @@ public class HmsAnalyticsPlugin extends Plugin {
     public void getAppInstanceId(final PluginCall call) {
         try {
             if (analyticsInstance == null) {
-                call.error(MISSING_REF_MSSG);
+                call.reject(MISSING_REF_MSSG);
                 return;
             }
 
@@ -123,17 +123,17 @@ public class HmsAnalyticsPlugin extends Plugin {
                 public void onSuccess(String aaid) {
                     JSObject result = new JSObject();
                     result.put("instanceId", aaid);
-                    call.success(result);
+                    call.resolve(result);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(Exception ex) {
-                    call.error(ex.getLocalizedMessage());
+                    call.reject(ex.getLocalizedMessage());
                 }
             });
 
         } catch (Exception ex) {
-            call.error(ex.getLocalizedMessage());
+            call.reject(ex.getLocalizedMessage());
         }
     }
 
@@ -145,14 +145,14 @@ public class HmsAnalyticsPlugin extends Plugin {
     public void reset(PluginCall call) {
         try {
             if (analyticsInstance == null) {
-                call.error(MISSING_REF_MSSG);
+                call.reject(MISSING_REF_MSSG);
                 return;
             }
 
             analyticsInstance.clearCachedData();
-            call.success();
+            call.resolve();
         } catch (Exception ex) {
-            call.error(ex.getLocalizedMessage());
+            call.reject(ex.getLocalizedMessage());
         }
     }
 
@@ -166,12 +166,12 @@ public class HmsAnalyticsPlugin extends Plugin {
 
         try {
             if (analyticsInstance == null) {
-                call.error(MISSING_REF_MSSG);
+                call.reject(MISSING_REF_MSSG);
                 return;
             }
 
             if (!call.hasOption("name")) {
-                call.error("name property is missing");
+                call.reject("name property is missing");
                 return;
             }
 
@@ -202,9 +202,9 @@ public class HmsAnalyticsPlugin extends Plugin {
             }
 
             analyticsInstance.onEvent(name, bundle);
-            call.success();
+            call.resolve();
         } catch (Exception ex) {
-            call.error(ex.getLocalizedMessage());
+            call.reject(ex.getLocalizedMessage());
         }
     }
 
@@ -215,12 +215,12 @@ public class HmsAnalyticsPlugin extends Plugin {
     @PluginMethod
     public void enable(PluginCall call) {
         if (analyticsInstance == null) {
-            call.error(MISSING_REF_MSSG);
+            call.reject(MISSING_REF_MSSG);
             return;
         }
 
         analyticsInstance.setAnalyticsEnabled(true);
-        call.success();
+        call.resolve();
     }
 
     /**
@@ -230,12 +230,12 @@ public class HmsAnalyticsPlugin extends Plugin {
     @PluginMethod
     public void disable(PluginCall call) {
         if (analyticsInstance == null) {
-            call.error(MISSING_REF_MSSG);
+            call.reject(MISSING_REF_MSSG);
             return;
         }
 
         analyticsInstance.setAnalyticsEnabled(false);
-        call.success();
+        call.resolve();
     }
 
     /**
@@ -245,14 +245,14 @@ public class HmsAnalyticsPlugin extends Plugin {
     @PluginMethod
     public void setSessionDuration(PluginCall call) {
         if (analyticsInstance == null) {
-            call.error(MISSING_REF_MSSG);
+            call.reject(MISSING_REF_MSSG);
             return;
         }
 
         int duration = call.getInt("duration", 1800);
 
         analyticsInstance.setSessionDuration(duration);
-        call.success();
+        call.resolve();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -262,7 +262,7 @@ public class HmsAnalyticsPlugin extends Plugin {
     @PluginMethod
     public void enableLog(PluginCall call) {
         HiAnalyticsTools.enableLog();
-        call.success();
+        call.resolve();
     }
 
     @PluginMethod
@@ -275,10 +275,10 @@ public class HmsAnalyticsPlugin extends Plugin {
             intValueOfLevel = Integer.valueOf(level).intValue();
         } catch (IllegalArgumentException ex) {
             Log.e("HMS_ANALYTICS", "Invalid log level. level = " + level);
-            call.error("Invalid log level. level = " + level);
+            call.reject("Invalid log level. level = " + level);
             return;
         }
         HiAnalyticsTools.enableLog(intValueOfLevel);
-        call.success();
+        call.resolve();
     }
 }
