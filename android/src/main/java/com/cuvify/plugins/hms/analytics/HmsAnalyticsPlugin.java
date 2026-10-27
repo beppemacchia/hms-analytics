@@ -7,22 +7,15 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
-
 import com.getcapacitor.annotation.Permission;
 
 @CapacitorPlugin(
-        name = "HmsAnalytics",
-        permissions = {
-                @Permission(
-                        strings = { Manifest.permission.ACCESS_NETWORK_STATE },
-                        alias = "network"
-                ),
-                @Permission(strings = { Manifest.permission.INTERNET }, alias = "internet"),
-                @Permission(
-                        strings = { Manifest.permission.WAKE_LOCK },
-                        alias = "wakelock"
-                ),
-        }
+    name = "HmsAnalytics",
+    permissions = {
+        @Permission(strings = { Manifest.permission.ACCESS_NETWORK_STATE }, alias = "network"),
+        @Permission(strings = { Manifest.permission.INTERNET }, alias = "internet"),
+        @Permission(strings = { Manifest.permission.WAKE_LOCK }, alias = "wakelock")
+    }
 )
 public class HmsAnalyticsPlugin extends Plugin {
 
