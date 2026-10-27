@@ -3,37 +3,27 @@ package com.cuvify.plugins.hms.analytics;
 import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
-
 import com.getcapacitor.annotation.Permission;
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hms.analytics.HiAnalytics;
 import com.huawei.hms.analytics.HiAnalyticsInstance;
 import com.huawei.hms.analytics.HiAnalyticsTools;
-
+import java.util.Iterator;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-
 @CapacitorPlugin(
-        name = "HmsAnalytics",
-        permissions = {
-                @Permission(
-                        strings = { Manifest.permission.ACCESS_NETWORK_STATE },
-                        alias = "network"
-                ),
-                @Permission(strings = { Manifest.permission.INTERNET }, alias = "internet"),
-                @Permission(
-                        strings = { Manifest.permission.WAKE_LOCK },
-                        alias = "wakelock"
-                ),
-        }
+    name = "HmsAnalytics",
+    permissions = {
+        @Permission(strings = { Manifest.permission.ACCESS_NETWORK_STATE }, alias = "network"),
+        @Permission(strings = { Manifest.permission.INTERNET }, alias = "internet"),
+        @Permission(strings = { Manifest.permission.WAKE_LOCK }, alias = "wakelock")
+    }
 )
 public class HmsAnalyticsPlugin extends Plugin {
 
@@ -118,20 +108,26 @@ public class HmsAnalyticsPlugin extends Plugin {
                 return;
             }
 
-            analyticsInstance.getAAID().addOnSuccessListener(new OnSuccessListener<String>() {
-                @Override
-                public void onSuccess(String aaid) {
-                    JSObject result = new JSObject();
-                    result.put("instanceId", aaid);
-                    call.resolve(result);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(Exception ex) {
-                    call.reject(ex.getLocalizedMessage());
-                }
-            });
-
+            analyticsInstance
+                .getAAID()
+                .addOnSuccessListener(
+                    new OnSuccessListener<String>() {
+                        @Override
+                        public void onSuccess(String aaid) {
+                            JSObject result = new JSObject();
+                            result.put("instanceId", aaid);
+                            call.resolve(result);
+                        }
+                    }
+                )
+                .addOnFailureListener(
+                    new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception ex) {
+                            call.reject(ex.getLocalizedMessage());
+                        }
+                    }
+                );
         } catch (Exception ex) {
             call.reject(ex.getLocalizedMessage());
         }
@@ -163,7 +159,6 @@ public class HmsAnalyticsPlugin extends Plugin {
      */
     @PluginMethod
     public void onEvent(PluginCall call) {
-
         try {
             if (analyticsInstance == null) {
                 call.reject(MISSING_REF_MSSG);
